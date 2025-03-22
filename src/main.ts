@@ -12,12 +12,14 @@ const initialUserModel: Model<User> = {
 // Create functional ReactiveStore
 const userStore = createStore<User>(initialUserModel);
 
+
 // Subscribe reactively to state changes
 userStore.select().subscribe(model => {
-  console.log('Reactive Functional Store:', model);
+  console.log('Reactive Functional Store:', model.items.length, model.item.name);
 });
 
 // Dispatch actions clearly
 userStore.dispatch({ type: 'setItem', item: { id: 1, name: 'Alice' } });
 userStore.dispatch({ type: 'setItems', items: [{ id: 2, name: 'Bob' }, { id: 3, name: 'Charlie' }] });
 userStore.dispatch({ type: 'clear' });
+
